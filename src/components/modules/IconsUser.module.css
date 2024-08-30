@@ -1,0 +1,40 @@
+.wrapperIcons {
+  height: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapperIcons p {
+  width: 100%;
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.wrapperIcons div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.iconWrapper {
+  width: 3rem;
+  height: 3rem;
+border-radius: 50%;
+  display: block;
+  position: relative;
+}
+.iconWrapper input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+}
+.iconWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+  z-index: 10;
+}
+.selectedIcon{
+    box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.5);
+}
