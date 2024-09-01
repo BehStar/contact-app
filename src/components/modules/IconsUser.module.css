@@ -17,9 +17,10 @@
 .iconWrapper {
   width: 3rem;
   height: 3rem;
-border-radius: 50%;
+  border-radius: 50%;
   display: block;
   position: relative;
+  cursor: pointer;
 }
 .iconWrapper input {
   position: absolute;
@@ -35,6 +36,6 @@ border-radius: 50%;
   border-radius: 50%;
   z-index: 10;
 }
-.selectedIcon{
-    box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.5);
+.selectedIcon {
+  box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.5);
 }

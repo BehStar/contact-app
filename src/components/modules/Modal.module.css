@@ -1,0 +1,102 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  perspective: 800px;
+}
+.box {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  transform: rotateX(120deg);
+  transform-origin: center bottom;
+  transition: 1s;
+  animation: show 1s 1 forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes show {
+  to {
+    transform: rotateX(0deg);
+  }
+}
+
+.hidden {
+  animation: hidden 1s 1 forwards;
+}
+
+@keyframes hidden {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(120deg);
+  }
+}
+.wrapper {
+  width: 25rem;
+  height: 13rem;
+  background-color: #1e201e;
+  padding: 1rem;
+  clip-path: polygon(0 0, 45% 0, 50% 10%, 100% 10%, 100% 100%, 0 99%, 0% 30%);
+}
+.title {
+  color: #ecdfcc;
+}
+.text {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  color: white;
+}
+.wrapper .text em {
+  color: #ecdfcc;
+}
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.btnDelete {
+  width: 8rem;
+  height: 3rem;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid brown;
+  background-color: brown;
+  color: white;
+  transition: 0.3s;
+  box-shadow: 2px 2px 4px rgba(211, 211, 211, 0.41),
+    0 4px 8px rgba(211, 211, 211, 0.273);
+}
+.btnDelete:hover {
+  color: brown;
+  background-color: #fff;
+}
+
+.btnCancel {
+  width: 8rem;
+  height: 3rem;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #697565;
+  background-color: #697565;
+  color: white;
+  transition: 0.3s;
+  box-shadow: 2px 2px 4px rgba(211, 211, 211, 0.41),
+    0 4px 8px rgba(211, 211, 211, 0.273);
+}
+.btnCancel:hover {
+  color: #697565;
+  background-color: #fff;
+}

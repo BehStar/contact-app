@@ -1,0 +1,72 @@
+.alert {
+    width: 20rem;
+    height: 7rem;
+    background-color: #1e201e;
+    position: absolute;
+    top: 10px;
+    right: -22rem;
+    transition: 0.3s;
+    animation: show 1s forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0, 45% 0, 50% 10%, 100% 10%, 100% 100%, 0 99%, 0% 30%);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 1rem;
+  }
+  
+  @keyframes show {
+    from {
+      right: -20rem;
+    }
+    to {
+      right: 0;
+    }
+  }
+  
+  .hidden {
+    animation: show 1s reverse forwards;
+  }
+  .container {
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    perspective: 800px;
+  }
+  .box {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    transform: rotateY(120deg);
+    transform-origin: center bottom;
+    transition: 1s;
+    animation: show 1s 1 forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @keyframes show {
+    to {
+      transform: rotateY(0deg);
+    }
+  }
+  .messageBox{
+    width: 15rem;
+    height: 5rem;
+    padding: 1rem;
+    background-color: #1E201E;
+    color: #ECDFCC;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0, 45% 0, 50% 10%, 100% 10%, 100% 100%, 0 99%, 0% 30%);
+  }

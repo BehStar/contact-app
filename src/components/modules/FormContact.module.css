@@ -1,14 +1,12 @@
 .mainWrapper {
   width: 550px;
   height: 300px;
-  /* margin: 50px auto; */
+  margin: 10px auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 100px 100px 100px 50px blue; */
   transition: 0.5s;
   position: relative;
-  background-color: black;
 }
 
 .firstWrapper {
@@ -16,7 +14,8 @@
   height: 18rem;
   padding: 1rem;
   padding-top: 3rem;
-  background-color: coral;
+  background-color: #697565;
+  color: white;
   border-radius: 1rem;
   clip-path: polygon(0 0, 45% 0, 50% 10%, 100% 10%, 100% 100%, 0 99%, 0% 30%);
   z-index: 10;
@@ -38,6 +37,7 @@
   background-color: inherit;
   opacity: 1;
   transition: 0.2s;
+  color: #ecdfcc;
 }
 .firstWrapper .hiddenBtn {
   opacity: 0;
@@ -48,7 +48,7 @@
 .firstWrapper .submit {
   width: 100%;
   height: 40px;
-  background-color: rgba(139, 0, 0, 0.432);
+  background-color: #3c3d37;
   color: white;
   position: absolute;
   bottom: 0;
@@ -65,16 +65,15 @@
 .secondWrapper {
   width: 16rem;
   height: 13.8rem;
-  background-color: lightpink;
+  background-color: #ecdfcc;
   padding: 10px;
-  /* padding-top: 2rem; */
   display: grid;
   position: absolute;
   top: 50%;
   left: 62%;
   transform: translate(-62%, -55%);
   transition: 0.3s;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .btnClose {
@@ -95,7 +94,6 @@
   transform: rotate(90deg);
 }
 .showMoreFirstWrapper {
-  /* background-color: green; */
   left: 0;
   transform: translate(0, 0);
 }
@@ -119,4 +117,39 @@
   .firstWrapper .forResponsive {
     display: block;
   }
+}
+.btnGroup {
+  width: 100%;
+  height: 40px;
+  background-color: #3c3d37;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.submitBtn {
+  background-color: #3C3D37;
+  color: white;
+  border-bottom-left-radius: 1rem;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+}
+.cancelBtn {
+  background-color: brown;
+  color: white;
+  border-bottom-right-radius: 1rem;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
 }

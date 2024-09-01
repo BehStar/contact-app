@@ -1,0 +1,190 @@
+.listWrapper {
+  max-height: 20rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  list-style: none;
+  counter-reset: cardCount;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  background: linear-gradient(to right, #ecdfcce3, #ecdfcc00);
+}
+.fixedRow {
+  background-color: #ecdfcc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.groupIcons {
+  display: flex;
+  align-items: center;
+}
+.selectGroupIcon,
+.closeIcon,
+.trash {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #697565;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.searchBox {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.inputSearch {
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  background-color: #697565;
+  padding-right: 40px;
+  color: black;
+}
+.inputSearch::placeholder {
+  color: #6975659b;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+.btnSearch {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color: #ffffff;
+  background-color: transparent;
+  pointer-events: painted;
+}
+.btnSearch:focus ~ .inputSearch {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid #1e201e;
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.inputSearch:focus {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid #1e201e;
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.noUser{
+  width: 45.8rem;
+  padding: 1rem;
+  color: brown;
+}
+.listWrapper li {
+  counter-increment: cardCount;
+  display: flex;
+  color: white;
+  --arrowClipSize: 1.5rem;
+  margin-top: 1rem;
+}
+
+.listWrapper li::before {
+  content: counter(cardCount, decimal-leading-zero);
+  background: #3c3d37;
+  color: #ecdfcc;
+  font-size: 2em;
+  font-weight: 700;
+  transform: translateY(calc(-1 * 1rem));
+  margin-right: calc(-1 * 1rem);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 0.5em;
+}
+
+.content {
+  background-color: #697565;
+  display: grid;
+  padding: 0.5em calc(1em + 1.5rem) 0.5em calc(1em + 1rem);
+  grid-template-areas:
+    "icon title"
+    "icon text";
+  gap: 0.25em 1em;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 1.5rem) 0,
+    100% 50%,
+    calc(100% - 1.5rem) 100%,
+    calc(100% - 1.5rem) calc(100% + 1rem),
+    0 calc(100% + 1rem)
+  );
+  position: relative;
+  cursor: pointer;
+}
+.content::before {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background: yellow;
+  left: 0;
+  bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  filter: brightness(0.75);
+}
+.content::after {
+  content: "";
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent 50%);
+  left: 0;
+  top: 100%;
+}
+.icon {
+  grid-area: icon;
+  align-self: center;
+  font-size: 2em;
+}
+.icon img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: contain;
+}
+.content .title {
+  grid-area: title;
+  font-size: 1.25em;
+}
+.content .text {
+  width: 35rem;
+  grid-area: text;
+}
+.forDel {
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forDel input{
+  width: 1rem;
+  height: 100%;
+}

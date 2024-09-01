@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import styles from "./IconsUser.module.css";
 
-const IconsUser = ({ setInfoUser }) => {
+const IconsUser = ({ setInfoUser, iconSelected }) => {
+
   const images = [
     { src: "/images/1.jpg", alt: "man-icon-1" },
     { src: "/images/2.jpg", alt: "woman-icon-1" },
@@ -10,7 +11,8 @@ const IconsUser = ({ setInfoUser }) => {
     { src: "/images/4.jpg", alt: "woman-icon-2" },
   ];
 
-  const [selectedIcon, setSelectedIcon] = useState(1); 
+  const [selectedIcon, setSelectedIcon] = useState(() => iconSelected || 1);
+
 
   return (
     <div className={styles.wrapperIcons}>
