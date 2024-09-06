@@ -10,13 +10,13 @@ const ShowContacts = ({ users, activeUserId, deleteUser, setEditUser }) => {
   const [activeUser, setActiveUser] = useState();
 
   const handleDelete = (user) => {
-    deleteUser(user.id); 
+    deleteUser(user.id);
   };
 
   useEffect(() => {
     const findUser = users.find((user) => user.id === activeUserId);
     setActiveUser(findUser);
-  }, [activeUserId]);
+  }, [activeUserId,users]);
 
   return (
     <div className={styles.wrapper}>
@@ -70,16 +70,25 @@ const ShowDataUser = ({ activeUser, handleDelete, setEditUser }) => {
 
           <h5 className={styles.jobPerson}>{activeUser?.occupation}</h5>
         </div>
+        <div className={styles.infoPersonResponsive}>
+          <h4 className={styles.namePerson}>
+            {activeUser?.firstName} {activeUser?.lastName}
+          </h4>
+
+          <h5 className={styles.jobPerson}>{activeUser?.occupation}</h5>
+        </div>
         <div className={styles.descriptionPerson}>
           <h4 className={styles.namePerson}>{activeUser?.email}</h4>
           <p>{activeUser?.phone}</p>
         </div>
-        <button className={styles.btnDelete} onClick={deleteHandler}>
-          <IoTrashOutline />
-        </button>
-        <button className={styles.btnEdit} onClick={editHandler}>
-          <CiEdit />
-        </button>
+        <div className={styles.btnGroup}>
+          <button className={styles.btnDelete} onClick={deleteHandler}>
+            <IoTrashOutline />
+          </button>
+          <button className={styles.btnEdit} onClick={editHandler}>
+            <CiEdit />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
     lastName: "",
     email: "",
     occupation: "",
-    phone: 0,
+    phone:0,
     icon: 1,
   });
 
@@ -42,6 +42,7 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
         phone: editUser.phone,
         icon: editUser.icon,
       });
+      resetErrorMessages();
     }
   }, [editUser]);
 
@@ -58,104 +59,83 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
     });
   };
 
+  // Validationn Info User
+  function validateUserInfo(infoUser) {
+    const newErrorMessages = { ...errorMessages };
+
+    const validateField = (
+      field,
+      label,
+      required = false,
+      minLength = 3,
+      regex = null
+    ) => {
+      if (required && !infoUser[field]) {
+        newErrorMessages[field] = `${label} is required`;
+      } else if (required &&infoUser[field] &&infoUser[field].length < minLength) {
+        newErrorMessages[field] = `${label} must be at least ${minLength} characters`;
+      } else if (regex && !regex.test(infoUser[field])) {
+        if (field ==='phone' && infoUser['phone'].length > 1){
+          console.log('phone' )
+          newErrorMessages[field] = `${label} is invalid`;
+        }else if(field ==='email' ){
+          newErrorMessages[field] = `${label} is invalid`;
+
+        }else{
+          delete newErrorMessages[field];
+        }
+      }else {
+        delete newErrorMessages[field];
+      }
+    };
+
+    validateField("firstName", "First name", true);
+    validateField("lastName", "Last name", true, 3);
+    validateField("email", "Email", true, 6, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    validateField("occupation", "Occupation", false, 0);
+    validateField("phone", "Phone number", false, 11, /^09[0-39]\d{8}$/);
+
+    return newErrorMessages;
+  }
+
+  // Reset error messages
+  const resetErrorMessages = () => {
+    const newErrorMessages = { ...errorMessages };
+    newErrorMessages.firstName = "";
+    newErrorMessages.lastName = "";
+    newErrorMessages.email = "";
+    newErrorMessages.occupation = "";
+    newErrorMessages.phone = "";
+    setErrorMessages(newErrorMessages);
+  };
+
   // Submit Handler
   const addHandler = (e) => {
     e.preventDefault();
-
     if (!editUser.id) {
-      const newErrorMessages = { ...errorMessages };
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^09[0-39]\d{8}$/;
+      const validationErrors = validateUserInfo(infoUser);
 
-      if (!infoUser.firstName) {
-        newErrorMessages.firstName = "field is requierd";
-      } else if (infoUser.firstName.length < 3) {
-        newErrorMessages.firstName = "field must be at least 3 characters";
-      } else if (!infoUser.lastName) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "field is requierd";
-      } else if (infoUser.lastName.length < 3) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "field must be at least 3 characters";
-      } else if (!infoUser.email) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "filed is requierd";
-      } else if (!emailRegex.test(infoUser.email)) {
-        newErrorMessages.email = "fill the email address";
-      } else if (
-        infoUser.occupation &&
-        infoUser.occupation.length <= 1 &&
-        infoUser.occupation.length < 3
-      ) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.occupation = "field must be at least 3 characters";
-      } else if (infoUser.phone && !phoneRegex.test(infoUser.phone)) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.phone = "fill the correct phone number";
+      if (Object.keys(validationErrors).length > 0) {
+        setErrorMessages(validationErrors);
       } else {
         if (users.some((user) => user.email === infoUser.email)) {
           setIsShowAlert(true);
           setMessageAlert("Email is exist");
           return;
         }
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.occupation = "";
-        newErrorMessages.phone = "";
 
         setUsers((prev) => [...prev, infoUser]);
         setIsShowAlert(true);
         setMessageAlert("The user was successfully registered");
         resetInfoUser();
+        resetErrorMessages();
       }
-      setErrorMessages(newErrorMessages);
     } else {
-      const newErrorMessages = { ...errorMessages };
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^09[0-39]\d{8}$/;
+      const validationErrors = validateUserInfo(infoUser);
 
-      if (!infoUser.firstName) {
-        newErrorMessages.firstName = "field is requierd";
-      } else if (infoUser.firstName.length < 3) {
-        newErrorMessages.firstName = "field must be at least 3 characters";
-      } else if (!infoUser.lastName) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "field is requierd";
-      } else if (infoUser.lastName.length < 3) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "field must be at least 3 characters";
-      } else if (!infoUser.email) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "filed is requierd";
-      } else if (!emailRegex.test(infoUser.email)) {
-        newErrorMessages.email = "fill the email address";
-      } else if (
-        infoUser.occupation &&
-        infoUser.occupation.length <= 1 &&
-        infoUser.occupation.length < 3
-      ) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.occupation = "field must be at least 3 characters";
-      } else if (infoUser.phone && !phoneRegex.test(infoUser.phone)) {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.phone = "fill the correct phone number";
+      if (Object.keys(validationErrors).length > 0) {
+        setErrorMessages(validationErrors);
       } else {
-        newErrorMessages.firstName = "";
-        newErrorMessages.lastName = "";
-        newErrorMessages.email = "";
-        newErrorMessages.occupation = "";
-        newErrorMessages.phone = "";
         const findUserIndex = users.findIndex(
           (user) => user.id === editUser.id
         );
@@ -168,32 +148,24 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
             }
           });
         });
-
         setEditUser({});
         setIsShowAlert(true);
         setMessageAlert("The user was successfully Edited");
         resetInfoUser();
+        resetErrorMessages();
       }
-      setErrorMessages(newErrorMessages);
     }
   };
 
   // Cancel Handler
   const cancelEditHandler = () => {
     setEditUser({});
-    setInfoUser({
-      id: new Date().getTime(),
-      firstName: "",
-      lastName: "",
-      email: "",
-      occupation: "",
-      phone: 0,
-      icon: 1,
-    });
+    resetInfoUser();
+    resetErrorMessages();
   };
 
   return (
-    <div className="test">
+    <div className="form-wrapper">
       {isShowAlert && (
         <Alert message={messageAlert} setIsShowAlert={setIsShowAlert} />
       )}
@@ -241,8 +213,7 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
               error={errorMessages.email}
             />
             {/* Responsive -- For Mobile */}
-            {/* <div className={styles.forResponsive}>
-           
+            <div className={styles.forResponsive}>
               <InputPart
                 type="text"
                 label="Occupation:"
@@ -260,10 +231,14 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
                 name="phone"
                 error={errorMessages.phone}
               />
-  
-              <IconsUser setInfoUser={setInfoUser} />
-            </div> */}
 
+              <IconsUser
+                setInfoUser={setInfoUser}
+                iconSelected={editUser.icon || 1}
+              />
+            </div>
+
+            {/* Buttons */}
             {editUser.id ? (
               <div className={styles.btnGroup}>
                 <button type="submit" className={styles.submitBtn}>
@@ -317,7 +292,7 @@ const FormContact = ({ users, setUsers, editUser, setEditUser }) => {
             />
             <IconsUser
               setInfoUser={setInfoUser}
-              iconSelected={editUser?.icon}
+              iconSelected={editUser.icon || 1}
             />
           </div>
         </form>

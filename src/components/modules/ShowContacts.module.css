@@ -1,8 +1,9 @@
 .wrapper {
-  width: 400px;
-  height: 300px;
+  /* width: 400px; */
+  width: 100%;
+  height: 380px;
   background-color: #ecdfcc;
-  margin: 1rem auto;
+  /* margin: 1rem auto; */
   border-radius: 20px;
   position: relative;
 }
@@ -43,6 +44,7 @@
 }
 
 .boxPeople {
+  width: 90%;
   position: absolute;
   top: 0;
   left: 0;
@@ -50,19 +52,19 @@
 }
 
 .boxPerson {
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  width: 100%;
+  min-height: 380px;
   position: relative;
 }
 
 .picPerson {
   width: 80px;
   height: 80px;
-  background-color: yellow;
   border-radius: 50%;
   position: absolute;
   top: 15%;
-  left: 12%;
+  left: 8%;
 }
 
 .picPerson img {
@@ -75,18 +77,22 @@
 
 .infoPerson {
   width: 60%;
-  height: 40px;
+  /* height: 40px; */
   position: absolute;
   top: 20%;
   left: 33%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
-
-.name-person {
-  color: crimson;
+.infoPersonResponsive {
+  display: none;
+}
+.namePerson {
   text-transform: capitalize;
+  overflow: hidden;
+  overflow-wrap: no-wrap;
+  text-overflow: ellipsis;
 }
 
 .jobPerson {
@@ -95,8 +101,6 @@
 }
 
 .descriptionPerson {
-  width: 100%;
-  height: 50%;
   position: absolute;
   top: 50%;
   left: 0;
@@ -104,6 +108,21 @@
   font-size: 14px;
   line-height: 1.5em;
   color: darkgray;
+  display: grid;
+  gap: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btnGroup{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  bottom: 10%;
+  left: 0%;
+  padding-bottom: 0.5rem;
 }
 .btnDelete {
   width: 8rem;
@@ -112,9 +131,6 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 80%;
-  left: 3rem;
   border-radius: 0.5rem;
   border: 1px solid brown;
   background-color: brown;
@@ -134,9 +150,6 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 80%;
-  left: 12rem;
   border-radius: 0.5rem;
   border: 1px solid #697565;
   background-color: #697565;
@@ -147,4 +160,38 @@
 .btnEdit:hover {
   color: #697565;
   background-color: #fff;
+}
+@media screen and (max-width: 767px) {
+  .infoPerson {
+    display: block;
+  }
+  .infoPersonResponsive {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .infoPerson {
+    display: none;
+  }
+  .infoPersonResponsive {
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 2%;
+  }
+  .descriptionPerson {
+    width: 100%;
+    top: 55%;
+    left: 2%;
+    padding: 0;
+  }
+  .namePerson {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .btnGroup {
+   bottom: 0;
+   display: grid;
+   gap: 0.2rem;
+  }
 }

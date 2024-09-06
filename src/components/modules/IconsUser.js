@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./IconsUser.module.css";
 
 const IconsUser = ({ setInfoUser, iconSelected }) => {
-
   const images = [
-    { src: "/images/1.jpg", alt: "man-icon-1" },
-    { src: "/images/2.jpg", alt: "woman-icon-1" },
-    { src: "/images/3.jpg", alt: "man-icon-2" },
-    { src: "/images/4.jpg", alt: "woman-icon-2" },
+    { id: 1, src: "/images/1.jpg", alt: "man-icon-1" },
+    { id: 2, src: "/images/2.jpg", alt: "woman-icon-1" },
+    { id: 3, src: "/images/3.jpg", alt: "man-icon-2" },
+    { id: 4, src: "/images/4.jpg", alt: "woman-icon-2" },
   ];
 
-  const [selectedIcon, setSelectedIcon] = useState(() => iconSelected || 1);
+  const [selectedIcon, setSelectedIcon] = useState(() => iconSelected);
 
+  useEffect(() => {
+    setSelectedIcon(() => iconSelected);
+  }, [iconSelected]);
 
   return (
     <div className={styles.wrapperIcons}>
       <p>Select Icon:</p>
       <div>
-        {images.map((image, index) => (
+        {images.map((image) => (
           <IconUser
-            key={index}
+            key={image.id}
             src={image.src}
             alt={image.alt}
-            value={index + 1}
+            value={image.id}
             setInfoUser={setInfoUser}
-            isSelected={selectedIcon === index + 1}
+            isSelected={selectedIcon === image.id}
             setSelectedIcon={setSelectedIcon}
           />
         ))}

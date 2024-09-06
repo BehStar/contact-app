@@ -29,9 +29,13 @@ const ListContact = ({ users, setUsers, setActiveUserId }) => {
   };
   const btnSearch = () => {
     const filteredUsers = users.filter((user) => {
-      return user.email.includes(search) || user.firstName.includes(search) || user.lastName.includes(search);
+      return (
+        user.email.includes(search) ||
+        user.firstName.includes(search) ||
+        user.lastName.includes(search)
+      );
     });
-    
+
     setDisplayUsers(filteredUsers);
   };
   return (
@@ -128,10 +132,13 @@ const PersonContact = ({
       <div className={styles.icon}>
         <img src={`/images/${user.icon}.jpg`} alt="icon" />
       </div>
-      <div className={styles.title}>
-        {user.firstName} {user.lastName}
+      <div className={styles.wrapperDetails}>
+        <div className={styles.title}>
+          {user.firstName} {user.lastName}
+        </div>
+        <div className={styles.text}>{user.email}</div>
       </div>
-      <div className={styles.text}>{user.email}</div>
+
       {isSelectedGroup && (
         <div className={styles.forDel}>
           <input
